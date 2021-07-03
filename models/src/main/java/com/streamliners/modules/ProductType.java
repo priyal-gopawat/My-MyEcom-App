@@ -2,5 +2,7 @@ package com.streamliners.modules;
 
 public class ProductType {
 
-    public static final int TYPE_WB=0,TYPE_VB=1;
+    //creating constants
+    //used static so as to access the integer values without creating objects
+    public static final int TYPE_WB = 0, TYPE_VB = 1;
 }

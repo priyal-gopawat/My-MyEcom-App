@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">My-Ecom</string>
+    <string name="apple">Apple</string>
+    <string name="image_of_item">Image of Item</string>
+    <string name="_100_kg">₹ 100 / Kg</string>
+    <string name="_2_5_kg">2.5 Kg</string>
+    <string name="edit_button">Edit Button</string>
+    <string name="add_button">Add Button</string>
+    <string name="kiwi">Kiwi</string>
+    <string name="_2_variants">2 variants</string>
+    <string name="increase_button">Increase Button</string>
+    <string name="decrease_button">Decrease Button</string>
+    <string name="_3">3</string>
+    <string name="_1kg_170">1Kg - ₹170</string>
+    <string name="dropdown_button">Dropdown Button</string>
+    <string name="remove">Remove</string>
+    <string name="save">Save</string>
+    <string name="remove_all">Remove All</string>
+    <string name="checkout">CHECKOUT</string>
+    <string name="total_items">6 items</string>
+    <string name="_932">₹ 932</string>
+</resources>

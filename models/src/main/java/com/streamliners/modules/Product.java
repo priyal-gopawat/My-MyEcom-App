@@ -3,53 +3,41 @@ package com.streamliners.modules;
 import java.util.List;
 
 public class Product {
-     //Common
-     public String name,imageUrl;
-     public int type;
 
-     //WBP
-     public float minQty,pricePerKg;
+    //common
+    public String name, imageURL;
+    public int type;
 
-     //VBP
-     public  List<Variant> variants;
+    //WBP
+    public float minQuantity, pricePerKg;
 
-    /**
-     * parametrized constructor for WB
-     * @param name  contains name of the product
-     * @param imageUrl contains image of the product
-     * @param minQty contains minQty to purchase
-     * @param pricePerKg contains pricePerKg of the product
-     */
-    public Product(String name, String imageUrl,float minQty,float pricePerKg) {
+    //VBP
+    public List<Variant> variants;
+
+    //for WBP
+    public Product(String name, String imageURL, float pricePerKg, float minQuantity) {
         type = ProductType.TYPE_WB;
         this.name = name;
-        this.imageUrl = imageUrl;
-        this.minQty = minQty;
-        this.pricePerKg=pricePerKg;
+        this.imageURL = imageURL;
+        this.pricePerKg = pricePerKg;
+        this.minQuantity = minQuantity;
     }
 
-    /**
-     * parametrized constructor for VB
-     * @param name contains name of the product
-     * @param imageUrl contains image of the product
-     * @param variants
-     */
-    public Product(String name, String imageUrl, List<Variant> variants) {
+    //for VBP
+    public Product(String name, String imageURL, List<Variant> variants) {
         type = ProductType.TYPE_VB;
         this.name = name;
-        this.imageUrl = imageUrl;
-        this.variants=variants;
+        this.imageURL = imageURL;
+        this.variants = variants;
     }
 
-    @Override
+    /*@Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
 
-        if (type==0){
-            return name + " @Rs " + pricePerKg + "/kg";
-        }
-        else {
-            return name + " " + variants ;
-        }
-    }
+        if (type == ProductType.TYPE_WB)
+            return name + "     ₹ " + pricePerKg + "/kg";
+        else
+            return name + "     " + variants;
+
+    }*/
 }
