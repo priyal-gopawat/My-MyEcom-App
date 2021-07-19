@@ -14,13 +14,10 @@ import com.streamliners.my_ecom.databinding.ChipVariantBinding;
 import com.streamliners.my_ecom.databinding.ItemVbProductBinding;
 import com.streamliners.my_ecom.dialogs.VariantsQtyPickerDialog;
 
-import java.util.HashMap;
-
 public class VBProductBinder {
     private Context context;
     private Cart cart;
     private AdapterCallbacksListener listener;
-    private final HashMap<String ,Boolean> saveVariantGrpVisibility=new HashMap<>();
 
     public VBProductBinder(Context context, Cart cart, AdapterCallbacksListener listener){
         this.context = context;
@@ -28,32 +25,24 @@ public class VBProductBinder {
         this.listener = listener;
     }
 
+    @SuppressLint("SetTextI18n")
     public void bind(ItemVbProductBinding b, Product product, int position){
 
         //bind data
+        b.vbProductName.setText(product.name);
         b.productVariants.setText(product.variants.size() + " variants");
         b.imageVbProduct.setImageURI(Uri.parse(product.imageURL));
-        b.btnShowVariants.setVisibility(View.VISIBLE);
-        b.btnShowVariants.setRotation(0);
         b.variants.setVisibility(View.GONE);
 
-        if(saveVariantGrpVisibility.containsKey(product.name)){
-            if(saveVariantGrpVisibility.get(product.name)){
-                b.btnShowVariants.setVisibility(View.VISIBLE);
-                b.btnShowVariants.setRotation(180);
-                b.variants.setVisibility(View.VISIBLE);
-            }
-        }
-
-        //show and gone variant group
-        showAndHideVariantGrp(b,product);
+        //show and hide variant group
+        showAndHideVariantGrp(b);
         inflateVariants(product, b);
         buttonEventHandler(product, b, position);
         checkVbProductInCart(product, b);
 
     }
 
-    private void showAndHideVariantGrp(ItemVbProductBinding b, Product product) {
+    private void showAndHideVariantGrp(ItemVbProductBinding b) {
         b.btnShowVariants.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,12 +50,9 @@ public class VBProductBinder {
                 if (b.variants.getVisibility() == View.GONE) {
                     b.variants.setVisibility(View.VISIBLE);
                     b.btnShowVariants.setRotation(180);
-
-                    saveVariantGrpVisibility.put(product.name,true);
                 } else {
                     b.variants.setVisibility(View.GONE);
                     b.btnShowVariants.setRotation(0);
-                    saveVariantGrpVisibility.put(product.name,false);
                 }
             }
         });
@@ -75,7 +61,7 @@ public class VBProductBinder {
     @SuppressLint("SetTextI18n")
     public void checkVbProductInCart(Product product, ItemVbProductBinding b) {
         //total qty from cart
-        int qty=0;
+        int qty = 0;
 
         for (Variant variant : product.variants) {
             //check qty present in cart

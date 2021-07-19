@@ -1,5 +1,6 @@
 package com.streamliners.my_ecom.dialogs;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.View;
 
@@ -54,6 +55,7 @@ public class VariantsQtyPickerDialog {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private void inflateVariants() {
         for (Variant variant : product.variants) {
 
@@ -72,6 +74,7 @@ public class VariantsQtyPickerDialog {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void prefillSelectedVariant(ItemVariantBinding binding, String variantName) {
         //check cart variant is prent or not
         if (cart.cartItems.containsKey(product.name + " " + variantName)) {
@@ -86,6 +89,7 @@ public class VariantsQtyPickerDialog {
 
     private void addQuantityForEachVariant(ItemVariantBinding binding, String variantName) {
         binding.incBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View v) {
                 //Save qty of variants

@@ -1,6 +1,7 @@
 package com.streamliners.my_ecom.controllers;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -48,6 +49,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d("MeraTag", "onCreateViewHolder() called with: parent = [" + parent + "], viewType = [" + viewType + "]");
+
         if(viewType == ProductType.TYPE_WB){
             ItemWbProductBinding binding = ItemWbProductBinding.inflate(
                     LayoutInflater.from(context)
@@ -67,6 +70,8 @@ public class ProductsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        Log.d("MeraTag", "onBindViewHolder() called with: holder = [" + holder + "], position = [" + position + "]");
+
         Product product = products.get(position);
 
         if(holder instanceof WBProductViewHolder){
@@ -78,6 +83,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public int getItemCount() {
+        Log.d("MeraTag", "getItemCount() called");
         return products.size();
     }
 

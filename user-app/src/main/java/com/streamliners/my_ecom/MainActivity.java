@@ -4,10 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.streamliners.modules.Cart;
 import com.streamliners.modules.Product;
@@ -17,6 +19,7 @@ import com.streamliners.my_ecom.controllers.AdapterCallbacksListener;
 import com.streamliners.my_ecom.databinding.ActivityMainBinding;
 import com.streamliners.my_ecom.tmp.ProductsHelper;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,9 +61,13 @@ public class MainActivity extends AppCompatActivity {
                 , cart
                 , listener);
 
-        b.list.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        b.list.setLayoutManager(new LinearLayoutManager(this));
+        //ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Arrays.asList("A", "B", "C"));
+
         b.list.setAdapter(adapter);
+        //b.list.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+
+        b.list.setLayoutManager(new LinearLayoutManager(this));
+        adapter.notifyDataSetChanged();
     }
 
     @SuppressLint({"DefaultLocale", "SetTextI18n"})

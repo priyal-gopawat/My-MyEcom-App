@@ -16,13 +16,13 @@ public class ProductsHelper {
 
         List<Product> products = new ArrayList<>();
 
-        Product apple = new Product("Apple", Uri.parse("android.resource://com.streamliners.my_ecom/" + R.drawable.apple).toString(), 1, 80);
+        Product apple = new Product("Apple", Uri.parse("android.resource://com.streamliners.my_ecom/" + R.drawable.apple).toString(), 80, 1);
 
-        Product orange = new Product("Orange", Uri.parse("android.resource://com.streamliners.my_ecom/" + R.drawable.orange).toString(), 1.5f, 100);
+        Product orange = new Product("Orange", Uri.parse("android.resource://com.streamliners.my_ecom/" + R.drawable.orange).toString(), 100, 1.5f);
 
-        Product tomato = new Product("Tomatoes", Uri.parse("android.resource://com.streamliners.my_ecom/" + R.drawable.tomato).toString(), 1, 50);
+        Product tomato = new Product("Tomatoes", Uri.parse("android.resource://com.streamliners.my_ecom/" + R.drawable.tomato).toString(), 50, 1);
 
-        Product mango = new Product("Mango", Uri.parse("android.resource://com.streamliners.my_ecom/" + R.drawable.mango).toString(), 2, 120);
+        Product mango = new Product("Mango", Uri.parse("android.resource://com.streamliners.my_ecom/" + R.drawable.mango).toString(), 120, 2);
 
         Product kiwi = new Product("Kiwi", Uri.parse("android.resource://com.streamliners.my_ecom/" + R.drawable.kiwi).toString(), new ArrayList<>
                 (Arrays.asList(new Variant("500g",96), new Variant("1kg",180))

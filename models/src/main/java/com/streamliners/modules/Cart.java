@@ -100,7 +100,7 @@ public class Cart {
     }
 
 
-    //to decrement variant
+    /*//to decrement variant
     public void decrementVBP(Product product, Variant variant){
 
         String key = product.name + " " + variant.name;
@@ -115,7 +115,7 @@ public class Cart {
         //Remove if qty = 0;
         if (cartItems.get(key).qty == 0)
             cartItems.remove(key);
-    }
+    }*/
 
 
     /*@Override
