@@ -34,6 +34,7 @@ public class VBProductBinder {
         b.imageVbProduct.setImageURI(Uri.parse(product.imageURL));
         b.variants.setVisibility(View.GONE);
 
+        cart = new Cart();
         //show and hide variant group
         showAndHideVariantGrp(b);
         inflateVariants(product, b);

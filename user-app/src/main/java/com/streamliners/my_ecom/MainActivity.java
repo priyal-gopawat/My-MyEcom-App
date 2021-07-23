@@ -19,6 +19,7 @@ import com.streamliners.my_ecom.controllers.AdapterCallbacksListener;
 import com.streamliners.my_ecom.databinding.ActivityMainBinding;
 import com.streamliners.my_ecom.tmp.ProductsHelper;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,20 +28,19 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding b;
     private ProductsAdapter adapter;
     private Cart cart;
-    List<Product> products = ProductsHelper.getProducts();
-    private SharedPreferences sharedPrefs;
+    List<Product> products = new ArrayList<>();
+    private boolean isUpdated;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         b = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(R.layout.activity_main);
+        setContentView(b.getRoot());
 
         setTitle("Products");
 
-        // Handle Shared preferences
-        sharedPrefs = getPreferences(MODE_PRIVATE);
+        //Handle Shared preferences
         loadSharedPreferences();
 
         setupAdapter();
@@ -48,10 +48,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void setupAdapter() {
+        this.products = ProductsHelper.getProducts();
+
         AdapterCallbacksListener listener = new AdapterCallbacksListener() {
             @Override
             public void onCartUpdated(int itemPosition) {
                 updateCartSummary();
+                isUpdated = true;
                 adapter.notifyItemChanged(itemPosition);
             }
         };
@@ -61,46 +64,46 @@ public class MainActivity extends AppCompatActivity {
                 , cart
                 , listener);
 
-        //ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Arrays.asList("A", "B", "C"));
-
+        b.list.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         b.list.setAdapter(adapter);
-        //b.list.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-
         b.list.setLayoutManager(new LinearLayoutManager(this));
-        adapter.notifyDataSetChanged();
     }
 
     @SuppressLint({"DefaultLocale", "SetTextI18n"})
     private void updateCartSummary() {
         if(!cart.cartItems.isEmpty()){
-            b.totalItems.setText(cart.noOfItems+"items");
-            b.totalPrice.setText("₹"+String.format("%.2f",cart.total));
+            b.totalItems.setText (cart.noOfItems + "items");
+            b.totalPrice.setText ("₹" + String.format("%.2f", cart.total));
 
-            b.linearLayout.setVisibility(View.VISIBLE);
+            b.cartSummary.setVisibility(View.VISIBLE);
         }
         else {
-            b.linearLayout.setVisibility(View.GONE);
+            b.cartSummary.setVisibility(View.GONE);
         }
-
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        SharedPreferences.Editor editor = sharedPrefs.edit();
 
-        Gson gson = new Gson();
-        String json = gson.toJson(cart);
-        editor.putString("CART", json);
-        editor.apply();
+        if (isUpdated) {
+            Gson gson = new Gson();
+            String json = gson.toJson(cart);
+            getPreferences(MODE_PRIVATE).edit().putString("CART", json).apply();
+            isUpdated = false;
+        }
     }
 
     private void loadSharedPreferences() {
-        Gson gson = new Gson();
-        String json = sharedPrefs.getString("CART", "");
-        if(json.isEmpty()){
+        String cart = getPreferences(MODE_PRIVATE).getString("CART", null);
+
+        if(cart == null){
+            this.cart = new Cart();
             return;
         }
-        cart = gson.fromJson(json, Cart.class);
+
+        this.cart = new Gson().fromJson(cart, Cart.class);
+        updateCartSummary();
     }
 }
+

@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:elevation="8dp"
-    app:cardCornerRadius="15dp"
-    android:layout_margin="8dp">
+    android:layout_height="wrap_content">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rootLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="8dp">
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
-        <ImageView
+
+    <ImageView
             android:id="@+id/image_vb_product"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             android:adjustViewBounds="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/kiwi"
             android:contentDescription="@string/image_of_item" />
+
+        <ProgressBar
+            android:id="@+id/imgLoader"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/vb_product_name"
@@ -36,10 +46,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:text="@string/kiwi"
-            app:layout_constraintEnd_toStartOf="@+id/btn_dec"
+            app:layout_constraintEnd_toStartOf="@+id/barrier"
             app:layout_constraintStart_toEndOf="@+id/image_vb_product"
             app:layout_constraintTop_toTopOf="parent"
             android:marqueeRepeatLimit="marquee_forever"
@@ -59,55 +68,50 @@
             app:layout_constraintTop_toBottomOf="@+id/vb_product_name" />
 
 
-        <ImageView
+        <ImageButton
             android:id="@+id/btn_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
+            style="@style/imageButton"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
             app:srcCompat="@drawable/ic_baseline_add_24"
-            app:tint="@color/design_default_color_primary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/increase_button" />
 
-        <ImageView
-            android:id="@+id/btn_dec"
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/zero_qty_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:constraint_referenced_ids="btn_add"/>
+
+        <ImageButton
+            android:id="@+id/btn_dec"
+            style="@style/imageButton"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toStartOf="@+id/current_qty"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_minus"
-            app:tint="@color/design_default_color_primary"
             android:contentDescription="@string/decrease_button" />
 
         <TextView
             android:id="@+id/current_qty"
-            style="@style/TextAppearance.MaterialComponents.Headline6"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/_3"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_dec"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_add"
             app:layout_constraintEnd_toStartOf="@+id/btn_add"
-            app:layout_constraintTop_toTopOf="@+id/btn_dec" />
+            app:layout_constraintTop_toTopOf="@+id/btn_add" />
 
         <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="left"
-            app:constraint_referenced_ids="current_qty,btn_add,btn_dec"
-            tools:layout_editor_absoluteX="292dp"
-            tools:layout_editor_absoluteY="45dp" />
+            app:constraint_referenced_ids="btn_add"
+            app:layout_constraintEnd_toStartOf="@id/btn_add"/>
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/non_zero_qty_group"
@@ -118,40 +122,27 @@
 
         <ImageButton
             android:id="@+id/btn_show_variants"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/imageButton"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:contentDescription="@string/dropdown_button"
-            app:layout_constraintStart_toEndOf="@+id/variants"
+            app:layout_constraintStart_toEndOf="@+id/productVariants"
             app:layout_constraintTop_toBottomOf="@+id/vb_product_name"
-            app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24"
-            app:tint="@color/black" />
+            app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24" />
 
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.chip.ChipGroup
             android:id="@+id/variants"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/productVariants"
-            app:layout_constraintVertical_bias="0.0">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleSelection="true">
 
             <include layout="@layout/chip_variant" />
 
-            <com.google.android.material.chip.Chip
-                style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/_1kg_170" />
-
         </com.google.android.material.chip.ChipGroup>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

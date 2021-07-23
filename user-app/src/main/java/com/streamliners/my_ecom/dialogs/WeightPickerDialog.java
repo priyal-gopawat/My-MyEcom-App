@@ -45,11 +45,8 @@ public class WeightPickerDialog {
                 .show();
 
         binding.titleWBPDialog.setText(product.name);
-
         minQty();
-
         buttonEventHandlers();
-
         preSelectedQty();
 
     }
@@ -81,7 +78,7 @@ public class WeightPickerDialog {
 
         binding.qtyInGrams.setDisplayedValues(null);
         binding.qtyInGrams.setMinValue(0);
-        binding.qtyInGrams.setMaxValue(numberOfValues-1);
+        binding.qtyInGrams.setMaxValue(numberOfValues - 1);
         binding.qtyInGrams.setDisplayedValues(ValueToDisplay);
         binding.qtyInGrams.setValue(selectedPosition);
     }
@@ -98,7 +95,7 @@ public class WeightPickerDialog {
             ValueToDisplay[i] = (++pickerRange) + "Kg";
         }
         binding.qtyInKg.setMinValue(0);
-        binding.qtyInKg.setMaxValue(ValueToDisplay.length-1);
+        binding.qtyInKg.setMaxValue(ValueToDisplay.length - 1);
         binding.qtyInKg.setDisplayedValues(ValueToDisplay);
 
         binding.qtyInKg.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
@@ -108,11 +105,11 @@ public class WeightPickerDialog {
                     if(minValueG == 0){
                         return;
                     }
-                    selectedPosition=((minValueG/50+binding.qtyInGrams.getValue())*50) / 50;
+                    selectedPosition = ((minValueG / 50 + binding.qtyInGrams.getValue()) * 50) / 50;
                     minValueG = 0;
                     eventNumberPickerG();
                 }
-                else if(picker.getValue()+minValueKg == minValueKg){
+                else if(picker.getValue() + minValueKg == minValueKg){
                     minValueG = (int)((product.minQuantity - minValueKg) * 1000);
 
                     selectedPosition = ((binding.qtyInGrams.getValue() * 50) - minValueG) / 50;
@@ -163,7 +160,7 @@ public class WeightPickerDialog {
 
             String minQtyG = "0." + minValues[1];
 
-            int gram=(int) (Float.parseFloat(minQtyG) * 1000);
+            int gram = (int) (Float.parseFloat(minQtyG) * 1000);
 
             binding.qtyInGrams.setValue(Integer.parseInt(minValues[0]) - minValueKg);
 

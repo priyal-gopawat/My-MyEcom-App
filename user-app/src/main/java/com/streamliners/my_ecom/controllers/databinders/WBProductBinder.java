@@ -25,9 +25,10 @@ public class WBProductBinder {
     @SuppressLint("DefaultLocale")
     public void bind(ItemWbProductBinding b, Product product, int position){
         b.wbProductName.setText(product.name);
-        b.qtyWb.setText(String.format("₹%.2f/kg", product.pricePerKg));
+        b.subtitle.setText(String.format("₹%.2f/kg", product.pricePerKg));
         b.imageWbProduct.setImageURI(Uri.parse(product.imageURL));
 
+        cart = new Cart();
         buttonEventHandlers(b,product,position);
 
         checkWbProductInCart(b,product);
