@@ -12,7 +12,7 @@
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/cartSummary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +38,7 @@
 
             <TextView
                 android:id="@+id/totalPrice"
-                style="@style/TextAppearance.MaterialComponents.Headline6"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingStart="16dp"
@@ -48,19 +48,18 @@
 
             <TextView
                 android:id="@+id/totalItems"
-                style="@style/TextAppearance.MaterialComponents.Headline6"
+                style="@style/TextAppearance.MaterialComponents.Subtitle2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
+                android:layout_marginTop="24dp"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"
                 android:text="@string/total_items"
-                android:textColor="@color/material_on_primary_emphasis_medium"
-                android:textSize="16sp" />
+                android:textColor="@color/material_on_primary_emphasis_medium" />
 
             <TextView
                 android:id="@+id/checkout"
-                style="@style/TextAppearance.MaterialComponents.Headline6"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"

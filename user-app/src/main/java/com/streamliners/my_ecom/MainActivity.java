@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding b;
     private ProductsAdapter adapter;
-    private Cart cart;
+    private Cart cart = new Cart();
     List<Product> products = new ArrayList<>();
-    private boolean isUpdated;
+    private SharedPreferences sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Products");
 
         //Handle Shared preferences
+        sharedPrefs = getPreferences(MODE_PRIVATE);
         loadSharedPreferences();
 
         setupAdapter();
@@ -54,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onCartUpdated(int itemPosition) {
                 updateCartSummary();
-                isUpdated = true;
                 adapter.notifyItemChanged(itemPosition);
             }
         };
@@ -71,10 +71,10 @@ public class MainActivity extends AppCompatActivity {
 
     @SuppressLint({"DefaultLocale", "SetTextI18n"})
     private void updateCartSummary() {
-        if(!cart.cartItems.isEmpty()){
-            b.totalItems.setText (cart.noOfItems + "items");
-            b.totalPrice.setText ("₹" + String.format("%.2f", cart.total));
 
+        if(!cart.cartItems.isEmpty()){
+            b.totalItems.setText(cart.noOfItems + " items");
+            b.totalPrice.setText("₹" + String.format("%.2f", cart.total));
             b.cartSummary.setVisibility(View.VISIBLE);
         }
         else {
@@ -85,25 +85,23 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        SharedPreferences.Editor editor = sharedPrefs.edit();
 
-        if (isUpdated) {
-            Gson gson = new Gson();
-            String json = gson.toJson(cart);
-            getPreferences(MODE_PRIVATE).edit().putString("CART", json).apply();
-            isUpdated = false;
-        }
+        Gson gson = new Gson();
+        String json = gson.toJson(cart);
+        editor.putString("CART", json);
+        editor.apply();
     }
 
     private void loadSharedPreferences() {
-        String cart = getPreferences(MODE_PRIVATE).getString("CART", null);
-
+        Gson gson = new Gson();
+        String json = sharedPrefs.getString("CART", "");
+        cart = gson.fromJson(json, Cart.class);
         if(cart == null){
             this.cart = new Cart();
             return;
         }
-
-        this.cart = new Gson().fromJson(cart, Cart.class);
         updateCartSummary();
     }
-}
 
+}

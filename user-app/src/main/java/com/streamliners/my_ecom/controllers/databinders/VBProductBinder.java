@@ -34,7 +34,6 @@ public class VBProductBinder {
         b.imageVbProduct.setImageURI(Uri.parse(product.imageURL));
         b.variants.setVisibility(View.GONE);
 
-        cart = new Cart();
         //show and hide variant group
         showAndHideVariantGrp(b);
         inflateVariants(product, b);
@@ -90,7 +89,7 @@ public class VBProductBinder {
             b.vbProductName.setText(product.name);
             for (Variant variant : product.variants) {
                 ChipVariantBinding binding = ChipVariantBinding.inflate(((MainActivity) context).getLayoutInflater());
-                binding.getRoot().setText(variant.name + " - Rs." + variant.price);
+                binding.getRoot().setText(variant.name + " - ₹" + variant.price);
                 b.variants.addView(binding.getRoot());
             }
             return;

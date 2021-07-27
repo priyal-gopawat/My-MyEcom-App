@@ -28,7 +28,6 @@ public class WBProductBinder {
         b.subtitle.setText(String.format("₹%.2f/kg", product.pricePerKg));
         b.imageWbProduct.setImageURI(Uri.parse(product.imageURL));
 
-        cart = new Cart();
         buttonEventHandlers(b,product,position);
 
         checkWbProductInCart(b,product);
@@ -37,9 +36,9 @@ public class WBProductBinder {
     @SuppressLint("SetTextI18n")
     public void checkWbProductInCart(ItemWbProductBinding b, Product product) {
         if(cart.cartItems.containsKey(product.name)){
+            b.zeroQtyGroup.setVisibility(View.GONE);
             b.nonZeroQtyGroup.setVisibility(View.VISIBLE);
-            b.btnAdd.setVisibility(View.GONE);
-            b.qtyWb.setText(cart.cartItems.get(product.name).qty + "Kg");
+            b.qtyWb.setText(cart.cartItems.get(product.name).qty + " kg");
         }
         else{
             b.nonZeroQtyGroup.setVisibility(View.GONE);

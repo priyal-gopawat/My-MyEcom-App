@@ -27,7 +27,7 @@ public class WeightPickerDialog {
     private int selectedPosition = 0;
     private DialogWeightPickerBinding binding;
 
-    public WeightPickerDialog(Context context, Cart cart,int position,Product product, AdapterCallbacksListener listener){
+    public WeightPickerDialog(Context context, Cart cart, int position, Product product, AdapterCallbacksListener listener){
         this.context = context;
         this.cart = cart;
         this.product = product;
@@ -72,7 +72,7 @@ public class WeightPickerDialog {
         ValueToDisplay[0] = minValueG + "g";
         for(int i = 1; i < numberOfValues; i++){
 
-            ValueToDisplay[i] = (pickerRange + 50) + "gm";
+            ValueToDisplay[i] = (pickerRange + 50) + "g";
             pickerRange += 50;
         }
 
@@ -89,10 +89,10 @@ public class WeightPickerDialog {
         int pickerRange = minValueKg;
         String[] ValueToDisplay = new String[numberOfValues];
 
-        ValueToDisplay[0] = minValueKg +"Kg";
+        ValueToDisplay[0] = minValueKg +"kg";
         for(int i = 1; i < numberOfValues; i++){
 
-            ValueToDisplay[i] = (++pickerRange) + "Kg";
+            ValueToDisplay[i] = (++pickerRange) + "kg";
         }
         binding.qtyInKg.setMinValue(0);
         binding.qtyInKg.setMaxValue(ValueToDisplay.length - 1);

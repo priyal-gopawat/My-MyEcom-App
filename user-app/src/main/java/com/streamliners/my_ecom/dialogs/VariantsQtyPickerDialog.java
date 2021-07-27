@@ -60,7 +60,7 @@ public class VariantsQtyPickerDialog {
         for (Variant variant : product.variants) {
 
             ItemVariantBinding binding = ItemVariantBinding.inflate(((MainActivity) context).getLayoutInflater());
-            binding.variantName.setText("Rs." + variant.price + " - " + variant.name);
+            binding.variantName.setText("₹" + variant.price + " - " + variant.name);
             b.variants.addView(binding.getRoot());
 
             //prefill selected variants
