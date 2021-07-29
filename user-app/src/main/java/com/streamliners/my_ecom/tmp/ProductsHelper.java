@@ -22,7 +22,7 @@ public class ProductsHelper {
 
         Product tomato = new Product("Tomatoes", Uri.parse("android.resource://com.streamliners.my_ecom/" + R.drawable.tomato).toString(), 50, 1);
 
-        Product mango = new Product("Mango", Uri.parse("android.resource://com.streamliners.my_ecom/" + R.drawable.mango).toString(), 120, 2);
+        Product mango = new Product("Mango", Uri.parse("android.resource://com.streamliners.my_ecom/" + R.drawable.apple).toString(), 120, 2);
 
         Product kiwi = new Product("Kiwi", Uri.parse("android.resource://com.streamliners.my_ecom/" + R.drawable.kiwi).toString(), new ArrayList<>
                 (Arrays.asList(new Variant("500g",96), new Variant("1kg",180))

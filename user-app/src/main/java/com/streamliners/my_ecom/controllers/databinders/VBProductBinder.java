@@ -97,7 +97,7 @@ public class VBProductBinder {
 
         //for single variant
         b.btnShowVariants.setVisibility(View.GONE);
-        b.productVariants.setText("Rs." + product.variants.get(0).price);
+        b.productVariants.setText("₹" + product.variants.get(0).price);
         b.vbProductName.setText(product.name + " " + product.variants.get(0).name);
     }
 

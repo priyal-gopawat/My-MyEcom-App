@@ -4,23 +4,20 @@ import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
 import com.streamliners.modules.Cart;
 import com.streamliners.modules.Product;
-import com.google.gson.Gson;
-import com.streamliners.my_ecom.controllers.ProductsAdapter;
 import com.streamliners.my_ecom.controllers.AdapterCallbacksListener;
+import com.streamliners.my_ecom.controllers.ProductsAdapter;
 import com.streamliners.my_ecom.databinding.ActivityMainBinding;
 import com.streamliners.my_ecom.tmp.ProductsHelper;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {

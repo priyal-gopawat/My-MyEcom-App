@@ -12,65 +12,56 @@
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@id/cartSummary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/cartSummary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary"
         android:clickable="true"
         android:focusable="true"
         android:gravity="bottom"
         android:orientation="horizontal"
+        android:padding="8dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <FrameLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/totalPrice"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/design_default_color_primary"
-            android:padding="8dp">
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/_932"
+            android:textColor="@color/material_on_primary_emphasis_high_type" />
 
-            <TextView
-                android:id="@+id/totalPrice"
-                style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:text="@string/_932"
-                android:textColor="@color/material_on_primary_emphasis_high_type" />
+        <TextView
+            android:id="@+id/totalItems"
+            style="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/total_items"
+            android:textColor="@color/material_on_primary_emphasis_medium" />
 
-            <TextView
-                android:id="@+id/totalItems"
-                style="@style/TextAppearance.MaterialComponents.Subtitle2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:text="@string/total_items"
-                android:textColor="@color/material_on_primary_emphasis_medium" />
+        <TextView
+            android:id="@+id/checkout"
+            style="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:padding="8dp"
+            android:text="@string/checkout"
+            android:textColor="@color/material_on_primary_emphasis_high_type" />
 
-            <TextView
-                android:id="@+id/checkout"
-                style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:padding="8dp"
-                android:text="@string/checkout"
-                android:textColor="@color/material_on_primary_emphasis_high_type" />
-
-
-        </FrameLayout>
-
-    </LinearLayout>
-
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
